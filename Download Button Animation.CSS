@@ -1,0 +1,201 @@
+/* Created by RoshanJ45 */
+
+/* Google Fonts(Poppins) */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.btn {
+  position: relative;
+  width: 160px;
+  height: 57px;
+  border: 2px solid #5b5bf0;
+  border-radius: 50px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.btn .input {
+  display: none;
+}
+
+.btn:has(.input:checked) {
+  width: 57px;
+  animation: btnAnim 0.4s ease 3.5s forwards;
+}
+
+@keyframes btnAnim {
+  100% {
+    width: 150px;
+    border-color: #23ae23;
+  }
+}
+
+.btn::before {
+  position: absolute;
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  border-radius: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn:has(.input:checked)::before {
+  animation: rotate 3s ease-in-out 0.4s forwards;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(-90deg) translate(27px) rotate(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  99% {
+    transform: rotate(270deg) translate(27px) rotate(270deg);
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.btn .circle {
+  position: relative;
+  height: 45px;
+  width: 45px;
+  background: #5b5bf0;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn .circle .icon {
+  position: absolute;
+  color: #fff;
+  width: 30px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.4s ease;
+}
+
+.btn .input:checked + .circle {
+  rotate: 180deg;
+  animation: cAnim 0.2s ease 3.5s forwards;
+}
+
+@keyframes cAnim {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.btn .input:checked + .circle .icon {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.btn .circle .square {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  background: #fff;
+  border-radius: 2px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s ease;
+}
+
+.btn .input:checked ~ .circle .square {
+  opacity: 1;
+  visibility: visible;
+}
+
+.btn .circle::before {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  background: #3333a8;
+  left: 0;
+  top: 0;
+  transition: all 0.4s ease;
+}
+
+.btn .input:checked + .circle::before {
+  animation: loadAnim 3s ease-in-out forwards;
+}
+
+@keyframes loadAnim {
+  from {
+    height: 0;
+  }
+  to {
+    height: 100%;
+  }
+}
+
+.btn .title {
+  position: absolute;
+  font-size: 17px;
+  color: #fff;
+  right: 15px;
+  bottom: 14px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+.btn .title:last-child {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.btn .input:checked ~ .title {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.btn .input:checked ~ .title:last-child {
+  animation: titleAnim 0.4s ease 3.5s forwards;
+}
+
+@keyframes titleAnim {
+  100% {
+    opacity: 1;
+    visibility: visible;
+    right: 50px;
+  }
+}
